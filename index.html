@@ -4,22 +4,35 @@
   </head>
   <body>
     <script>
-      // Make a GET request to the API endpoint
-      fetch('https://api.dev.twidapp.com/mobile/freshworksRedirection')
-        .then(response => response.json())
-        .then(data => {
-          // Extract the URL from the API response
-          const redirectUrl = data.url;
 
-          // Check if the redirect URL is present
-          if (redirectUrl) {
-            // Redirect to the URL
-            window.location.href = redirectUrl;
-          }
-        })
-        .catch(error => {
-          window.location.href = "https://www.google.com/";
-        });
+      function getFinalRedirectUrl(url) {
+  return fetch(url, { method: 'HEAD', redirect: 'follow' })
+    .then(response => response.url);
+}
+
+// Example usage
+var url = 'http://support.twidpay.com/customer/login'; // Replace with the desired URL
+getFinalRedirectUrl(url)
+  .then(finalRedirectUrl => console.log(finalRedirectUrl));
+
+
+      
+      // // Make a GET request to the API endpoint
+      // fetch('https://api.dev.twidapp.com/mobile/freshworksRedirection')
+      //   .then(response => response.json())
+      //   .then(data => {
+      //     // Extract the URL from the API response
+      //     const redirectUrl = data.url;
+
+      //     // Check if the redirect URL is present
+      //     if (redirectUrl) {
+      //       // Redirect to the URL
+      //       window.location.href = redirectUrl;
+      //     }
+      //   })
+      //   .catch(error => {
+      //     window.location.href = "https://www.google.com/";
+      //   });
     </script>
   </body>
 </html>
