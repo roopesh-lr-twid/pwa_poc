@@ -1,11 +1,25 @@
-<!DOCTYPE html>
 <html>
-<body>
+  <head>
+    <title>API Redirect Example</title>
+  </head>
+  <body>
+    <script>
+      // Make a GET request to the API endpoint
+      fetch('https://api.example.com/endpoint')
+        .then(response => response.json())
+        .then(data => {
+          // Extract the URL from the API response
+          const redirectUrl = data.url;
 
-<h1>My First Heading check</h1>
-
-  <a href="upi://pay?pa=UPIID@oksbi&amp;pn=FNAME SNAME K&amp;cu=INR" class="upi-pay1">Pay Now !</a>
-<p>My first paragraph.</p>
-
-</body>
+          // Check if the redirect URL is present
+          if (redirectUrl) {
+            // Redirect to the URL
+            window.location.href = redirectUrl;
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    </script>
+  </body>
 </html>
